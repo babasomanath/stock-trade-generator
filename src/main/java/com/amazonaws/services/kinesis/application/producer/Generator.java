@@ -245,11 +245,10 @@ public class Generator {
                     public void onSuccess(UserRecordResult result) {
                         completed.getAndIncrement();
                         log.info(String.format(
-                                "Succesfully Put Record, "
+                                "Succesfully put record, "
                                         + "payload=%s", trade.toString()
-                                        + "  sequenceNumber - %s",result.getSequenceNumber()
-                                        + "  shardId - %s",result.getShardId()
-                                        + "  took - %d",result.getAttempts().size()+" attempts"
+                                        + "  sequenceNumber - "+result.getSequenceNumber()+ "  shardId - "+result.getShardId()
+                                        + "  took - "+result.getAttempts().size()+" attempts"
                                         ));
                     }
                 };
