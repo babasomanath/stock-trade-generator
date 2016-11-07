@@ -244,6 +244,7 @@ public class Generator {
                     @Override
                     public void onSuccess(UserRecordResult result) {
                         completed.getAndIncrement();
+                        log.info("Details : "+result.getSequenceNumber(),result.getShardId(),result.getAttempts().size());
                         log.info(String.format(
                                 "Succesfully put record, "
                                         + "payload=%s", trade.toString()
