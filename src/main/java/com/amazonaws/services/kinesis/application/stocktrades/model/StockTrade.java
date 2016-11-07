@@ -16,7 +16,6 @@
 package com.amazonaws.services.kinesis.application.stocktrades.model;
 
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.Date;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
