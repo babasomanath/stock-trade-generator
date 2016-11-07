@@ -244,12 +244,13 @@ public class Generator {
                     @Override
                     public void onSuccess(UserRecordResult result) {
                         completed.getAndIncrement();
-                        log.info("Details : "+result.getSequenceNumber(),result.getShardId(),result.getAttempts().size());
                         log.info(String.format(
-                                "Succesfully put record, "
+                                "Succesfully Put Record, "
                                         + "payload=%s", trade.toString()
-                                        + "  sequenceNumber=%s  shardId=%s  took %d attempts",
-                                        result.getSequenceNumber(),result.getShardId(),result.getAttempts().size()));
+                                        + "  sequenceNumber - %s",result.getSequenceNumber()
+                                        + "  shardId - %s",result.getShardId()
+                                        + "  took - %d",result.getAttempts().size()+" attempts"
+                                        ));
                     }
                 };
 
