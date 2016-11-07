@@ -3,7 +3,7 @@
 To run this code:
 
 1) Perform a git clone:
- git clone https://github.com/fabiantan/stock-trade-generator/
+ git clone https://github.com/babasomanath/stock-trade-generator/
 
 2) Run the code:
 ```
