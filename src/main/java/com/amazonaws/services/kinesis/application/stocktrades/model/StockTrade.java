@@ -28,7 +28,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class StockTrade implements Serializable,Comparable<StockTrade>{
 
-    private final static ObjectMapper JSON = new ObjectMapper();
+    /**
+	 * DEFAULT SERIAL ID
+	 */
+	private static final long serialVersionUID = 1L;
+	private final static ObjectMapper JSON = new ObjectMapper();
     static {
         JSON.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
