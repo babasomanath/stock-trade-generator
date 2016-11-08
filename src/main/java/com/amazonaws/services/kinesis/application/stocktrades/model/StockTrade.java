@@ -85,7 +85,7 @@ public class StockTrade implements Serializable, Comparable<StockTrade> {
 		return id;
 	}
 
-	public Long getDateTime() {
+	public Long getTimeInNanos() {
 		return timeInNanos;
 	}
 
