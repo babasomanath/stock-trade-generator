@@ -16,7 +16,7 @@
 package com.amazonaws.services.kinesis.application.stocktrades.model;
 
 import java.io.IOException;
-import java.util.Date;
+import java.io.Serializable;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,7 +26,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * number of shares, the type of the trade (buy or sell), and an id uniquely identifying
  * the trade.
  */
-public class StockTrade {
+public class StockTrade implements Serializable,Comparable<StockTrade>{
 
     private final static ObjectMapper JSON = new ObjectMapper();
     static {
@@ -46,7 +46,7 @@ public class StockTrade {
     private double price;
     private long quantity;
     private long id;
-    private Date date;
+    private Long timeInNanos;
     
     public StockTrade() {
     }
@@ -57,7 +57,7 @@ public class StockTrade {
         this.price = price;
         this.quantity = quantity;
         this.id = id;
-        this.date=new Date();
+        this.timeInNanos=System.nanoTime();
     }
 
     public String getTickerSymbol() {
@@ -80,8 +80,8 @@ public class StockTrade {
         return id;
     }
     
-    public Date getDate(){
-    	return date;
+    public Long getDateTime(){
+    	return timeInNanos;
     }
     
     public byte[] toJsonAsBytes() {
@@ -102,8 +102,12 @@ public class StockTrade {
 
     @Override
     public String toString() {
-        return String.format("{id:%d,tradeType:\"%s\",quantity:%d,tickerSymbol:\"%s\",price:%.02f,date:\"%s\"}",
-                id, tradeType, quantity, tickerSymbol, price,date);
+        return String.format("{id:%d,tradeType:\"%s\",quantity:%d,tickerSymbol:\"%s\",price:%.02f,timeInNanos:\"%s\"}",
+                id, tradeType, quantity, tickerSymbol, price,timeInNanos);
     }
-
+    
+	@Override
+	public int compareTo(StockTrade stockObject) {
+		return this.timeInNanos.compareTo(stockObject.timeInNanos);
+	}
 }
