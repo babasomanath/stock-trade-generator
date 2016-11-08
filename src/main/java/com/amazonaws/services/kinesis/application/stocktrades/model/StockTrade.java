@@ -50,7 +50,7 @@ public class StockTrade implements Serializable, Comparable<StockTrade> {
 	private double price;
 	private long quantity;
 	private long id;
-	private Long timeInNanos;
+	private Long timeInMillis;
 
 	public StockTrade() {
 	}
@@ -62,7 +62,7 @@ public class StockTrade implements Serializable, Comparable<StockTrade> {
 		this.price = price;
 		this.quantity = quantity;
 		this.id = id;
-		this.timeInNanos = System.nanoTime();
+		this.timeInMillis = System.currentTimeMillis();
 	}
 
 	public String getTickerSymbol() {
@@ -85,8 +85,8 @@ public class StockTrade implements Serializable, Comparable<StockTrade> {
 		return id;
 	}
 
-	public Long getTimeInNanos() {
-		return timeInNanos;
+	public Long getTimeInMillis() {
+		return timeInMillis;
 	}
 
 	public byte[] toJsonAsBytes() {
@@ -116,7 +116,7 @@ public class StockTrade implements Serializable, Comparable<StockTrade> {
 
 	@Override
 	public int compareTo(StockTrade stockObject) {
-		return this.timeInNanos.compareTo(stockObject.timeInNanos);
+		return this.timeInMillis.compareTo(stockObject.timeInMillis);
 	}
 
 	@Override
@@ -131,7 +131,7 @@ public class StockTrade implements Serializable, Comparable<StockTrade> {
 		result = prime * result
 				+ ((tickerSymbol == null) ? 0 : tickerSymbol.hashCode());
 		result = prime * result
-				+ ((timeInNanos == null) ? 0 : timeInNanos.hashCode());
+				+ ((timeInMillis == null) ? 0 : timeInMillis.hashCode());
 		result = prime * result
 				+ ((tradeType == null) ? 0 : tradeType.hashCode());
 		return result;
@@ -166,11 +166,11 @@ public class StockTrade implements Serializable, Comparable<StockTrade> {
 		} else if (!tickerSymbol.equals(other.tickerSymbol)) {
 			return false;
 		}
-		if (timeInNanos == null) {
-			if (other.timeInNanos != null) {
+		if (timeInMillis == null) {
+			if (other.timeInMillis != null) {
 				return false;
 			}
-		} else if (!timeInNanos.equals(other.timeInNanos)) {
+		} else if (!timeInMillis.equals(other.timeInMillis)) {
 			return false;
 		}
 		if (tradeType != other.tradeType) {
