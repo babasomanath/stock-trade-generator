@@ -18,6 +18,7 @@ package com.amazonaws.services.kinesis.application.stocktrades.model;
 import java.io.IOException;
 import java.io.Serializable;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -105,12 +106,13 @@ public class StockTrade implements Serializable, Comparable<StockTrade> {
 	}
 
 	@Override
-	public String toString() {
-		return String
-				.format("{id:%d,tradeType:\"%s\",quantity:%d,tickerSymbol:\"%s\",price:%.02f,timeInNanos:\"%s\"}",
-						id, tradeType, quantity, tickerSymbol, price,
-						timeInNanos);
-	}
+    public String toString() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            return super.toString();
+        }
+    }
 
 	@Override
 	public int compareTo(StockTrade stockObject) {
