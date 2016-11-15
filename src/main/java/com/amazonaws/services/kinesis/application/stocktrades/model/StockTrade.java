@@ -116,7 +116,10 @@ public class StockTrade implements Serializable, Comparable<StockTrade> {
 
 	@Override
 	public int compareTo(StockTrade stockObject) {
-		return this.timeInMillis.compareTo(stockObject.timeInMillis);
+		if (this.timeInMillis>=stockObject.timeInMillis)
+			return 1;
+		else
+			return 0;
 	}
 
 	@Override
